@@ -1,5 +1,5 @@
 == pack test-core
 name: Engine test content
 version: 0.1.0
-authors: Flexible Survival engine project
+authors: MAGE project
 // Self-written content for testing the engine. Not part of the game.

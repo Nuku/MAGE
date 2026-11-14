@@ -1,0 +1,105 @@
+class_name GameState
+extends RefCounted
+## All mutable game state, keyed by content IDs.
+##
+## Only changes are stored: a value that was never changed is taken from its
+## declared default. This keeps saves small and lets new content add values
+## without migrations. Everything here is plain data (Dictionaries, Arrays,
+## numbers, text), so the whole state converts to JSON for saving.
+
+var values: Dictionary = {}  ## "owner.name" -> value (changed values only)
+var turn := 0  ## turns passed since the start (a turn is 3 hours)
+var actions := 0  ## completed gameplay actions, independent of survival turns
+var action_pending := false
+var scheduled: Array = []  ## {scene, due: completed action count}
+var location := ""  ## the player's location
+var known: Dictionary = {}  ## location id -> true when discovered
+var inventory: Dictionary = {}  ## item id -> count
+var equipped: Array = []  ## worn item ids, in the order put on
+var wielded := ""  ## the weapon in hand; "" fights unarmed
+## Items lying in places: location id -> {item id -> count}. A place is added
+## the first time it is needed, starting from its `items:` field.
+var ground: Dictionary = {}
+var feats: Array = []
+var traits: Dictionary = {}  ## character id -> [trait ids]
+var char_location: Dictionary = {}  ## character id -> location id
+var residence: Dictionary = {}  ## character id -> location id
+var companions: Array = []
+var events: Dictionary = {}  ## event id -> {"resolved", "active", "last_turn"}
+var conditions: Dictionary = {}  ## condition id -> {"remaining": turns}
+var variations: Dictionary = {}  ## text variation key -> state
+var stamps: Dictionary = {}  ## "owner.name" -> turn (time values)
+var ending := ""
+var rng_state: Array = []
+var runner: Array = []  ## scene runner frames, when saved mid-scene
+var combat: Dictionary = {}
+var settings: Dictionary = {}
+var encountered: Array = []  ## creature ids the player has fought, in order met
+
+
+func to_dict() -> Dictionary:
+	return {
+		"values": values, "turn": turn, "location": location, "known": known, "inventory": inventory,
+		"equipped": equipped, "wielded": wielded, "ground": ground,
+		"feats": feats, "traits": traits, "char_location": char_location, "residence": residence,
+		"companions": companions, "events": events, "conditions": conditions, "variations": variations,
+		"stamps": stamps, "ending": ending, "rng": rng_state, "runner": runner,
+		"combat": combat, "settings": settings,
+		"actions": actions, "action_pending": action_pending, "scheduled": scheduled, "encountered": encountered,
+	}
+
+
+static func from_dict(d: Dictionary) -> GameState:
+	var s := GameState.new()
+	s.values = d.get("values", {})
+	s.turn = int(d.get("turn", 0))
+	s.actions = int(d.get("actions", 0))
+	s.action_pending = bool(d.get("action_pending", false))
+	s.scheduled = d.get("scheduled", [])
+	for entry: Dictionary in s.scheduled:
+		entry.due = int(entry.due)
+	s.location = d.get("location", "")
+	s.known = d.get("known", {})
+	s.inventory = _ints(d.get("inventory", {}))
+	s.equipped = d.get("equipped", [])
+	s.wielded = d.get("wielded", "")
+	for loc in d.get("ground", {}):
+		s.ground[loc] = _ints(d.ground[loc])
+	s.feats = d.get("feats", [])
+	s.traits = d.get("traits", {})
+	s.char_location = d.get("char_location", {})
+	s.residence = d.get("residence", {})
+	s.companions = d.get("companions", [])
+	s.events = d.get("events", {})
+	s.conditions = d.get("conditions", {})
+	for entry: Dictionary in s.conditions.values():
+		entry.remaining = int(entry.get("remaining", 0))
+		for undo: Dictionary in entry.get("undo", []):
+			if undo.has("delta"):
+				undo.delta = int(undo.delta)
+			if undo.get("value") is float and undo.value == floor(undo.value):
+				undo.value = int(undo.value)
+	s.variations = d.get("variations", {})
+	s.stamps = _ints(d.get("stamps", {}))
+	s.ending = d.get("ending", "")
+	s.rng_state = d.get("rng", []).map(func(n): return int(n))
+	s.runner = d.get("runner", [])
+	s.combat = d.get("combat", {})
+	for key in ["hp", "maxhp", "libido", "penalty", "round"]:
+		if s.combat.has(key):
+			s.combat[key] = int(s.combat[key])
+	s.settings = d.get("settings", {})
+	s.encountered = d.get("encountered", [])
+	# JSON turns whole numbers into floats; restore them.
+	for k in s.values:
+		var v = s.values[k]
+		if v is float and v == floor(v):
+			s.values[k] = int(v)
+	return s
+
+
+static func _ints(d: Dictionary) -> Dictionary:
+	var out := {}
+	for k in d:
+		out[k] = int(d[k])
+	return out

@@ -1,0 +1,140 @@
+# seed: 42, start: shelter
+[location] Basement Shelter (old_town)
+A low concrete room lit by a single battery lantern. Cots line one wall, and a shelf holds what is left of the supplies.
+Mira sits at the table, bent over a hand-drawn map of the town.
+  people: Mira
+  exits: up: Town Plaza
+  actions: Rest, Wait
+>>> talk mira
+[title] Talking with Mira
+Mira looks up from the map she is drawing and gives you a tired smile.
+What do you want to talk about?
+  {1:The town -- Ask what happened here}
+  {2:Supplies -- Ask if the shelter needs anything}
+  {3:Nevermind}
+>>> choose 1
+'It went quiet in a single night,' Mira says. 'Power, phones, everything.'
+{continue}
+>>> continue
+What do you want to talk about?
+  {1:The town -- Ask what happened here}
+  {2:Supplies -- Ask if the shelter needs anything}
+  {3:Nevermind}
+>>> choose 2
+Mira sighs. 'Food, mostly. If you find anything sealed, bring it here.'
+[notice] Quest updated: Supplies for the shelter - Mira asked you to find food for the shelter.
+{continue}
+>>> continue
+What do you want to talk about?
+  {1:The town -- Ask what happened here}
+  {2:Nevermind}
+>>> choose 2
+You let Mira get back to her map.
+[location] Basement Shelter (old_town)
+A low concrete room lit by a single battery lantern. Cots line one wall, and a shelf holds what is left of the supplies.
+Mira sits at the table, bent over a hand-drawn map of the town.
+  people: Mira
+  exits: up: Town Plaza
+  actions: Rest, Wait
+>>> go up
+[location] Town Plaza (old_town)
+A wide square of cracked paving stones around a dry fountain. The streetlights are dead, and the dark feels close.
+  exits: down: Basement Shelter, east: Covered Market
+  actions: Explore, Wait
+>>> go east
+[location] Covered Market (old_town)
+Rows of empty stalls under a sagging glass roof. Most of the shelves were stripped long ago.
+  items: can of beans
+  exits: west: Town Plaza
+  actions: Explore, Wait
+>>> take can_of_beans
+You pick up the can of beans and tuck it in your backpack.
+[location] Covered Market (old_town)
+Rows of empty stalls under a sagging glass roof. Most of the shelves were stripped long ago.
+  exits: west: Town Plaza
+  actions: Explore, Wait
+>>> go west
+[location] Town Plaza (old_town)
+A wide square of cracked paving stones around a dry fountain. The streetlights are dead, and the dark feels close.
+  exits: down: Basement Shelter, east: Covered Market
+  actions: Explore, Wait
+>>> event stray_dog
+[title] A stray dog
+A thin dog watches you from behind an overturned bin, ribs showing.
+  {1:Chase it away}
+  {2:Leave it alone}
+>>> choose 1
+[combat] stray dog HP: 12/12 Libido: 0/100 Round: 1
+>>> combat throw
+It bites your hand before bolting.
+[notice] HP -3
+[location] Town Plaza (old_town)
+A wide square of cracked paving stones around a dry fountain. The streetlights are dead, and the dark feels close.
+  exits: down: Basement Shelter, east: Covered Market
+  actions: Explore, Wait
+>>> event stray_dog
+[title] A stray dog
+A thin dog watches you from behind an overturned bin, ribs showing.
+  {1:Chase it away}
+  {2:Leave it alone}
+>>> choose 2
+You keep your distance. The dog keeps its own.
+[location] Town Plaza (old_town)
+A wide square of cracked paving stones around a dry fountain. The streetlights are dead, and the dark feels close.
+  exits: down: Basement Shelter, east: Covered Market
+  actions: Explore, Wait
+>>> go down
+[location] Basement Shelter (old_town)
+A low concrete room lit by a single battery lantern. Cots line one wall, and a shelf holds what is left of the supplies.
+Mira sits at the table, bent over a hand-drawn map of the town.
+  people: Mira
+  exits: up: Town Plaza
+  actions: Rest, Wait
+>>> talk mira
+[title] Talking with Mira
+Mira looks up from the map she is drawing and gives you a tired smile.
+What do you want to talk about?
+  {1:The town -- Ask what happened here}
+  {2:Give the beans -- Hand over the can of beans}
+  {3:Nevermind}
+>>> choose 2
+[notice] Lost: can of beans
+[notice] Quest updated: Supplies for the shelter - You brought Mira a can of beans.
+'You actually found some!' Mira hugs the can like treasure. She can't stop smiling.
+{continue}
+>>> continue
+What do you want to talk about?
+  {1:The town -- Ask what happened here}
+  {2:Just sit with her -- Spend a while in quiet company}
+  {3:Nevermind}
+>>> choose 3
+You let Mira get back to her map.
+[location] Basement Shelter (old_town)
+A low concrete room lit by a single battery lantern. Cots line one wall, and a shelf holds what is left of the supplies.
+Mira sits at the table, bent over a hand-drawn map of the town.
+  people: Mira
+  exits: up: Town Plaza
+  actions: Rest, Wait
+>>> save user://test-save.json
+>>> load user://test-save.json
+[location] Basement Shelter (old_town)
+A low concrete room lit by a single battery lantern. Cots line one wall, and a shelf holds what is left of the supplies.
+Mira sits at the table, bent over a hand-drawn map of the town.
+  people: Mira
+  exits: up: Town Plaza
+  actions: Rest, Wait
+>>> talk mira
+[title] Talking with Mira
+Mira looks up from the map she is drawing and gives you a tired smile.
+What do you want to talk about?
+  {1:The town -- Ask what happened here}
+  {2:Just sit with her -- Spend a while in quiet company}
+  {3:Nevermind}
+>>> choose 1
+Mira shrugs. 'I told you what I know. Someone in the market might know more.'
+{continue}
+>>> continue
+What do you want to talk about?
+  {1:The town -- Ask what happened here}
+  {2:Just sit with her -- Spend a while in quiet company}
+  {3:Nevermind}

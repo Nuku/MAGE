@@ -1,0 +1,31 @@
+== image shelter
+artist: Engine project
+description: A concrete basement shelter lit by one battery lantern, with cots and a map table.
+
+== image mira
+artist: Engine project
+description: Mira, a tired but kind town mapper, in warm shelter light.
+
+== image plaza
+artist: Engine project
+description: A small town square with a dry fountain and abandoned market stalls in pale morning light.
+
+== image market
+artist: Engine project
+description: A covered market hall with empty stalls under a sagging, broken glass roof.
+
+== image water_bottle
+artist: Engine project
+description: A plastic water bottle.
+
+== image can_of_beans
+artist: Engine project
+description: A dented can of beans with a blank label.
+
+== image energy_drink
+artist: Engine project
+description: A slim energy drink can with a blank label.
+
+== image old_town_map
+artist: Engine project
+description: A survivor's hand-drawn sketch map of the old town, used behind the region map.

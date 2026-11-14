@@ -1,0 +1,78 @@
+== item water_bottle
+name: water bottle
+image: water_bottle
+description: A sealed bottle of water.
+weight: 1
+category: drink
+use:
+    if player.thirst > 0:
+        You drink the whole bottle.
+        ~ drink 25
+    else:
+        You aren't thirsty, so you put the bottle back.
+        ~ cancel use
+
+== item can_of_beans
+name: can of beans
+image: can_of_beans
+description: A dented but sealed can of beans.
+weight: 1
+category: food
+use:
+    You eat the beans cold, straight from the can.
+    ~ eat 30
+
+== event stray_dog
+name: A stray dog
+found by: exploring in streets
+repeat: until resolved
+outcomes: fed, chased_off, bitten
+tags: feral, canine
+play:
+    A thin dog watches you from behind an overturned bin, ribs showing.
+    * Offer it some water [if player has water_bottle]
+        You pour water into your hand. The dog drinks, then trots off, tail up.
+        ~ take water_bottle
+        ~ outcome fed
+        ~ resolve
+    * Chase it away
+        fight stray_dog:
+            won:
+                The dog yelps and runs.
+                ~ outcome chased_off
+            lost:
+                It bites your hand before bolting.
+                ~ hurt 3
+                ~ outcome bitten
+    * Leave it alone
+        You keep your distance. The dog keeps its own.
+
+== creature stray_dog
+name: stray dog
+// A deliberately simple opponent for testing the combat instruction.
+hp: 12
+level: 1
+damage: 3
+
+== item energy_drink
+name: energy drink
+image: energy_drink
+description: A can of something fizzy and far too sweet.
+weight: 1
+category: drink
+use:
+    You down the can in one go. Your heart starts racing.
+    ~ drink 10 quietly
+    ~ condition wired for 6 hours
+
+== condition wired
+name: Wired
+shows: Too much caffeine to sleep.
+blocks rest: yes
+rest refusal: Too much caffeine keeps you awake.
+while active:
+    feat + jittery
+each turn:
+    Your fingers drum on everything within reach.
+ends:
+    The buzz fades, leaving you tired and a little shaky.

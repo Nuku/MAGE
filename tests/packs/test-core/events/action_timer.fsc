@@ -1,0 +1,15 @@
+// Timer fixtures; they run only when explicitly scheduled by a test.
+== scene timer.first
+First scheduled scene.
+---
+First scene finished.
+~ schedule timer.second after 1 action
+
+== scene timer.second
+Second scheduled scene.
+~ player.score + 2 quietly
+
+== condition timer_pulse
+name: Timer pulse
+each turn:
+    The timer pulses.

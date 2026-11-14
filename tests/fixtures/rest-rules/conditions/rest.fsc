@@ -1,0 +1,22 @@
+== condition restless
+name: Restless
+shows: Your restless mind keeps you awake.
+blocks rest: yes
+rest refusal: Your restless mind will not let you sleep.
+
+== condition nimble
+name: Nimble
+while active:
+    player.dexterity + 3
+
+== feat echo
+name: Echo metadata
+
+== condition echo
+name: Echo
+while active:
+    player.dexterity + 1
+ends:
+    The echo fades.
+    ---
+    Silence returns.

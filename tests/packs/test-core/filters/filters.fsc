@@ -1,0 +1,25 @@
+// Self-written filters, tags and a content level for engine tests.
+
+== filter feral
+name: Feral
+group: Creatures
+description: Animals and animal-shaped creatures.
+
+== filter noncon
+name: Non-consent
+group: Themes
+description: Sex without consent.
+
+== tag canine
+name: Canine
+group: Species
+description: Dogs and wolves.
+
+== level detail
+name: Detail
+description: How long scenes are.
+default: standard
+options:
+    less: Shorter scenes.
+    standard: Normal scenes.
+    more: Longer scenes, with extra description.

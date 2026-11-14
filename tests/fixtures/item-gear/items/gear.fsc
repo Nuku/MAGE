@@ -1,0 +1,91 @@
+// Self-written test gear for ItemSystem; not original content.
+
+== values gear_test
+values:
+    worn_turns: number 0
+    put_on: number 0
+
+== item test_helmet
+name: test helmet
+description: A dented test helmet.
+category: clothing
+weight: 3
+consumed: no
+equipment:
+    slot: head
+    placement: head
+    armor: 60
+    effectiveness: 100
+    gender look: 1
+    style: cool, cute
+    worn text: A dented helmet sits on your head.
+on wear:
+    ~ gear_test.put_on + 1 quietly
+worn each turn:
+    ~ gear_test.worn_turns + 1 quietly
+
+== item test_cap
+name: test cap
+description: A soft cap.
+category: clothing
+weight: 1
+consumed: no
+equipment:
+    slot: head
+
+== item test_vest
+name: test vest
+description: A thick vest.
+category: clothing
+weight: 5
+consumed: no
+equipment:
+    slot: chest
+    placement: body
+    armor: 80
+    effectiveness: 100
+    dodge bonus: 2
+    flee bonus: -1
+
+== item test_tiny_boots
+name: tiny boots
+description: Boots for someone very small.
+category: clothing
+weight: 1
+consumed: no
+equipment:
+    slot: feet
+    size: 1
+    plural: yes
+
+== item test_collar
+name: test collar
+description: It does not come off.
+category: clothing
+consumed: no
+equipment:
+    slot: neck
+    cursed: yes
+
+== item test_club
+name: test club
+description: A heavy club.
+category: weapon
+weight: 4
+consumed: no
+weapon:
+    damage: 9
+    size: 4
+    hit bonus: 1
+    attack text: your club
+
+== item test_anvil
+name: anvil
+description: Far too heavy to carry far.
+category: other
+weight: 200
+consumed: no
+
+== location test_kitchen
+name: Test kitchen
+microwave: yes

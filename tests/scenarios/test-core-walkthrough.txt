@@ -1,0 +1,28 @@
+# Walk through the test pack: talk, quest, items, an event, saving.
+# Events are targeted so the walkthrough checks their branches independently of encounter selection.
+# Written for seed 42; random results differ with other seeds.
+talk mira
+choose 1
+continue
+choose 2
+continue
+choose 2
+go up
+go east
+take can_of_beans
+go west
+event stray_dog
+choose 1
+combat throw
+event stray_dog
+choose 2
+go down
+talk mira
+choose 2
+continue
+choose 3
+save user://test-save.json
+load user://test-save.json
+talk mira
+choose 1
+continue

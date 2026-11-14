@@ -1,0 +1,5 @@
+# Godot caches
+.godot/
+*.import.tmp
+# The GUT test add-on is installed locally (see tests/run_tests.sh)
+addons/gut/

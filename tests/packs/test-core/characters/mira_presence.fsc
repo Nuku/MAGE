@@ -1,0 +1,4 @@
+// Mira adds herself to the shelter's description from her own file.
+== extend location shelter
+presence:
+    [if mira is here]Mira sits at the table, bent over a hand-drawn map of the town.[end if]

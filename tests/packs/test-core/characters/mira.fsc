@@ -1,0 +1,50 @@
+== character mira
+name: Mira
+pronouns: she
+image: mira
+lives at: shelter
+values:
+    trust: wary, friendly, close
+    asked_about_town: flag
+talk:
+    Mira looks up from the map she is drawing and gives you a tired smile.
+    -> mira.talk
+
+== quest supplies
+name: Supplies for the shelter
+region: old_town
+stages:
+    not_started
+    asked: Mira asked you to find food for the shelter.
+    delivered: You brought Mira a can of beans.
+done at: delivered
+
+== menu mira.talk
+title: What do you want to talk about?
+leave: Nevermind
+pause after each: yes
+leave text: You let Mira get back to her map.
+
+* The town -- Ask what happened here
+    -> mira.about_town
+* Supplies -- Ask if the shelter needs anything [if quest supplies is not_started]
+    Mira sighs. 'Food, mostly. If you find anything sealed, bring it here.'
+    ~ quest supplies = asked
+* Give the beans -- Hand over the can of beans [if quest supplies is asked and player has can_of_beans]
+    ~ take can_of_beans
+    ~ quest supplies = delivered
+    ~ mira.trust = friendly
+    'You actually found some!' Mira hugs the can like treasure. [mira_thanks]
+* Just sit with her -- Spend a while in quiet company [if mira.trust is at least friendly] [then leave]
+    You sit together without talking. It is the calmest you have felt in days.
+    ~ spend 1 turn
+
+== scene mira.about_town
+if not mira.asked_about_town:
+    'It went quiet in a single night,' Mira says. 'Power, phones, everything.'
+    ~ mira.asked_about_town = yes quietly
+else:
+    Mira shrugs. 'I told you what I know. [one of]Which isn't much.[or]Someone in the market might know more.[at random]'
+
+== text mira_thanks
+[one of]She can't stop smiling.[or]For a moment she looks years younger.[stopping]

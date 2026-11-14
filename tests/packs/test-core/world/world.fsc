@@ -1,0 +1,52 @@
+== region old_town
+name: Old Town
+travel order: 1
+map grid: 8 x 8
+image: old_town_map
+
+== zone streets
+name: The streets
+ambient:
+    A gust of wind sends loose paper skittering along the empty street.
+
+    Somewhere far away, glass breaks. Then everything is quiet again.
+
+    You pass a row of abandoned cars, their doors hanging open.
+
+== location shelter
+name: Basement Shelter
+rest: bed
+region: old_town
+zone: none
+map: 3, 4
+flags: safe rest, known at start
+image: shelter
+exits:
+    up: plaza
+description:
+    A low concrete room lit by a single battery lantern. Cots line one wall, and a shelf holds what is left of the supplies.
+
+== location plaza
+name: Town Plaza
+region: old_town
+zone: streets
+map: 3, 3
+image: plaza
+flags: fast travel
+exits:
+    down: shelter
+    east: market
+description:
+    A wide square of cracked paving stones around a dry fountain. [if time is night]The streetlights are dead, and the dark feels close.[else]Pale daylight shows every abandoned stall.[end if]
+
+== location market
+name: Covered Market
+region: old_town
+zone: streets
+map: 4, 3
+image: market
+exits:
+    west: plaza
+items: can_of_beans
+description:
+    Rows of empty stalls under a sagging glass roof. Most of the shelves were stripped long ago.

@@ -1,0 +1,28 @@
+; Engine configuration file.
+; Edited by hand and by the Godot editor.
+
+config_version=5
+
+[application]
+
+config/name="MAGE"
+config/icon="res://icon.png"
+config/description="Modular Adventure Game Engine: an offline engine for text-driven adventure games built from content packs."
+config/features=PackedStringArray("4.7")
+run/main_scene="res://ui/main.tscn"
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
